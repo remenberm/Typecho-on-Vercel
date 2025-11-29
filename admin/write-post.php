@@ -75,11 +75,6 @@ include 'menu.php';
                 </div>
 
                 <div id="edit-secondary" class="col-mb-12 col-tb-3" role="complementary">
-                    <ul class="typecho-option-tabs clearfix">
-                        <li class="active w-50"><a href="#tab-advance"><?php _e('选项'); ?></a></li>
-                        <li class="w-50"><a href="#tab-files" id="tab-files-btn"><?php _e('附件'); ?></a></li>
-                    </ul>
-
 
                     <div id="tab-advance" class="tab-content">
                         <section class="typecho-post-option" role="application">
@@ -189,9 +184,6 @@ include 'menu.php';
                         <?php endif; ?>
                     </div><!-- end #tab-advance -->
 
-                    <div id="tab-files" class="tab-content hidden">
-                        <?php include 'file-upload.php'; ?>
-                    </div><!-- end #tab-files -->
                 </div>
             </form>
         </div>
@@ -209,7 +201,6 @@ if (!$plugged) {
     include 'editor-js.php';
 }
 
-include 'file-upload-js.php';
 include 'custom-fields-js.php';
 \Typecho\Plugin::factory('admin/write-post.php')->bottom($post);
 include 'footer.php';

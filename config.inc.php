@@ -6,6 +6,10 @@
  * @license    GNU General Public License 2.0
  * @version    $Id$
  */
+
+/** 开启数据库错误日志 */
+# define('__TYPECHO_DEBUG__', true);
+
 /** 开启https */ 
 define('__TYPECHO_SECURE__',true);
 
@@ -43,3 +47,33 @@ $db->addServer(array (
   'charset' => 'utf8',
 ), Typecho_Db::READ | Typecho_Db::WRITE);
 Typecho_Db::set($db);
+
+
+if (!defined('GITHUB_ATTACHMENT_TOKEN')) {
+  // Fine‑grained token，确保已授权仓库并给 "Contents: Read & write"
+  define('GITHUB_ATTACHMENT_TOKEN', 'xxx');
+
+  // 仓库 owner
+  define('GITHUB_ATTACHMENT_OWNER', 'xxx');
+
+  // 仓库名
+  define('GITHUB_ATTACHMENT_REPO', 'xxx');
+
+  // 分支（默认为 main）
+  define('GITHUB_ATTACHMENT_BRANCH', 'main');
+
+  // 仓库内的附件根目录（可留空或 'attachments' 等，不带首尾斜杠，支持多级目录）
+  define('GITHUB_ATTACHMENT_ROOT', '');
+
+  // 编辑器中上传图片默认目录
+  define('GITHUB_EDITOR_UPLOAD_DIR', 'editor_upload');
+
+  // 加速CDN域名(默认空即使用 GitHub 原始域名 raw.githubusercontent.com，后面不加斜杠)
+  define('GITHUB_ATTACHMENT_CDN', '');
+
+  // 最大上传大小，单位字节（默认 10MB）
+  define('GITHUB_ATTACHMENT_MAX_UPLOAD_BYTES', 10 * 1024 *1024);
+
+  // 指定 cacert.pem 路径（vercel-php默认设置）
+  define('GITHUB_ATTACHMENT_CACERT_PATH', '/usr/local/etc/openssl/cacert.pem');
+}

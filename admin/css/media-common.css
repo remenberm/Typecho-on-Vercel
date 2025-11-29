@@ -1,0 +1,90 @@
+/* manage-medias.php 和 media-box.php 共用样式
+*/
+
+/* Modal */
+.common-modal { position:fixed; inset:0; align-items:center; display:none; justify-content:center; background:rgba(0,0,0,0.45); z-index:9999; }
+.common-modal.show { display:flex; }
+
+
+/* Gallery 共用 */
+.gallery-item { background:#fff;border-radius:3px; overflow:hidden; border:1px solid #eee; display:flex; flex-direction:column; position:relative; transition: transform .18s ease, box-shadow .18s ease; }
+.gallery-item:hover { transform: translateY(-6px); box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+.gallery-thumb { width:100%; height:140px; object-fit:cover; display:block; background:#fafafa; }
+.gallery-meta { padding:8px 8px; font-size:13px; color:#333; display:flex; justify-content:space-between; align-items:center; }
+
+.file-name { overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
+.file-size { overflow:hidden; white-space:nowrap; text-overflow:ellipsis; color:#888; font-size:12px; margin-left:8px; }
+
+.gallery-actions { padding:8px 10px; text-align:right; border-top:1px solid #f7f7f7; background:transparent; }
+
+.gallery-grid {
+    display: grid;
+    gap: 12px;
+    width: 100%;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+/* pagination */
+.gallery-pagination {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    box-sizing: border-box;
+    border-top: 1px solid #f0f0f0;
+}
+
+.page-info {
+    color: #666;
+    font-size: 13px;
+    margin-right: auto;
+    padding-left: 6px;
+}
+
+.process-loading {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: rgba(0,0,0,0.85);
+    color: white;
+    padding: 20px 40px;
+    border-radius: 4px;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.i-loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    border: 3px solid rgba(255,255,255,.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1;
+}
+
+@media (max-width:900px) {
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 8px;
+    }
+    .process-loading {
+        padding: 10px 20px;
+    }
+}

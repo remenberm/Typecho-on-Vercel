@@ -1,4 +1,5 @@
 <?php if(!defined('__TYPECHO_ADMIN__')) exit; ?>
+<?php include 'media-box.php'; ?>
 <?php $content = !empty($post) ? $post : $page; if ($options->markdown): ?>
 <script src="<?php $options->adminStaticUrl('js', 'hyperdown.js'); ?>"></script>
 <script src="<?php $options->adminStaticUrl('js', 'pagedown.js'); ?>"></script>
@@ -159,23 +160,47 @@ $(document).ready(function () {
     function initMarkdown() {
         editor.run();
 
-        var imageButton = $('#wmd-image-button'),
-            linkButton = $('#wmd-link-button');
+        Typecho.insertFileToEditor = function (url) {
+            if (!url) return;
 
-        Typecho.insertFileToEditor = function (file, url, isImage) {
-            var button = isImage ? imageButton : linkButton;
-
-            options.strings[isImage ? 'imagename' : 'linkname'] = file;
-            button.trigger('click');
-
-            var checkDialog = setInterval(function () {
-                if ($('.wmd-prompt-dialog').length > 0) {
-                    $('.wmd-prompt-dialog input').val(url).select();
-                    clearInterval(checkDialog);
-                    checkDialog = null;
-                }
-            }, 10);
+            // 读取文件名
+            const urlObj = new URL(url);
+            const fileName = decodeURIComponent(urlObj.pathname).split('/').pop();
+            var md = '![' + fileName + '](' + url + ')';
+            // 寻找textarea
+            var textareaEl = $('textarea[name="text"]')[0];
+            // 在光标位置插入
+            function insertAtCursor(el, text) {
+                var start = el.selectionStart || 0;
+                var end = el.selectionEnd || 0;
+                var value = el.value || '';
+                el.value = value.substring(0, start) + text + value.substring(end);
+                var pos = start + text.length;
+                el.selectionStart = el.selectionEnd = pos;
+                el.focus();
+            }
+            insertAtCursor(textareaEl, md);
         };
+
+        var uploadButton = $('#wmd-upload-button');
+        uploadButton.click(function(e) {
+            e.preventDefault();
+            var $fileInput = $('<input type="file" accept="image/*" />');
+            $fileInput.on('change', function() {
+                uploadFile(this.files[0], function(res) {
+                    // 完成后的回调：插入编辑器
+                    Typecho.insertFileToEditor(decodeURIComponent(res.url));
+                });
+            });
+            $fileInput.trigger('click');
+        });
+
+        // 打开媒体库按钮
+        var boxButton = $('#wmd-box-button');
+        boxButton.click(function(e) {
+            e.preventDefault();
+            openModal();
+        });
 
         Typecho.uploadComplete = function (file) {
             Typecho.insertFileToEditor(file.title, file.url, file.isImage);
@@ -208,13 +233,9 @@ $(document).ready(function () {
 
         // 剪贴板复制图片
         textarea.pastableTextarea().on('pasteImage', function (e, data) {
-            var name = data.name ? data.name.replace(/[\(\)\[\]\*#!]/g, '') : (new Date()).toISOString().replace(/\..+$/, '');
-            if (!name.match(/\.[a-z0-9]{2,}$/i)) {
-                var ext = data.blob.type.split('/').pop();
-                name += '.' + ext;
-            }
-
-            Typecho.uploadFile(new File([data.blob], name), name);
+            uploadFile(new File([data.blob], 'tmp.png'), function(res) {
+                Typecho.insertFileToEditor(decodeURIComponent(res.url));
+            });
         });
     }
 
@@ -239,4 +260,3 @@ $(document).ready(function () {
 });
 </script>
 <?php endif; ?>
-

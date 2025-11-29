@@ -148,7 +148,7 @@ select { border: 1px solid #CCC; height: 28px; }
 
 .typecho-head-nav button.menu-bar { display: none; }
 
-.typecho-head-nav #typecho-nav-list { float: left; }
+.typecho-head-nav #typecho-nav-list { float: left; background: #202328;}
 
 .typecho-head-nav #typecho-nav-list > ul { list-style: none; margin: 0; padding: 0; position: relative; float: left; }
 
@@ -656,7 +656,7 @@ a.operate-reply { color: #545c30; }
 /* Editor */
 .editor { margin-bottom: -0.5em; }
 
-.editor-sprite, .editor-editor-bold, .editor-editor-code, .editor-editor-exit-fullscreen, .editor-editor-fullscreen, .editor-editor-heading, .editor-editor-hr, .editor-editor-image, .editor-editor-italic, .editor-editor-link, .editor-editor-more, .editor-editor-olist, .editor-editor-quote, .editor-editor-redo, .editor-editor-ulist, .editor-editor-undo, .wmd-button-row li#wmd-bold-button span, .wmd-button-row li#wmd-italic-button span, .wmd-button-row li#wmd-link-button span, .wmd-button-row li#wmd-quote-button span, .wmd-button-row li#wmd-code-button span, .wmd-button-row li#wmd-image-button span, .wmd-button-row li#wmd-olist-button span, .wmd-button-row li#wmd-ulist-button span, .wmd-button-row li#wmd-heading-button span, .wmd-button-row li#wmd-hr-button span, .wmd-button-row li#wmd-more-button span, .wmd-button-row li#wmd-undo-button span, .wmd-button-row li#wmd-redo-button span, .wmd-button-row li#wmd-fullscreen-button span, .wmd-button-row li#wmd-exit-fullscreen-button span { background-image: url("../img/editor.png?_=ce98884"); background-repeat: no-repeat; }
+.editor-sprite, .editor-editor-bold, .editor-editor-code, .editor-editor-exit-fullscreen, .editor-editor-fullscreen, .editor-editor-heading, .editor-editor-hr, .editor-editor-image, .editor-editor-italic, .editor-editor-link, .editor-editor-more, .editor-editor-olist, .editor-editor-quote, .editor-editor-redo, .editor-editor-ulist, .editor-editor-undo, .wmd-button-row li#wmd-bold-button span, .wmd-button-row li#wmd-italic-button span, .wmd-button-row li#wmd-link-button span, .wmd-button-row li#wmd-quote-button span, .wmd-button-row li#wmd-code-button span, .wmd-button-row li#wmd-image-button span, .wmd-button-row li#wmd-olist-button span, .wmd-button-row li#wmd-ulist-button span, .wmd-button-row li#wmd-heading-button span, .wmd-button-row li#wmd-hr-button span, .wmd-button-row li#wmd-more-button span, .wmd-button-row li#wmd-undo-button span, .wmd-button-row li#wmd-redo-button span, .wmd-button-row li#wmd-fullscreen-button span, .wmd-button-row li#wmd-exit-fullscreen-button span, .wmd-button-row li#wmd-upload-button span, .wmd-button-row li#wmd-box-button span { background-image: url("../img/editor.png?_=ce98884"); background-repeat: no-repeat; }
 
 .editor-editor-bold { background-position: 0 0; width: 20px; height: 20px; }
 
@@ -688,7 +688,7 @@ a.operate-reply { color: #545c30; }
 
 .editor-editor-undo { background-position: 0 -280px; width: 20px; height: 20px; }
 
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { .editor-sprite, .editor-editor-bold, .editor-editor-code, .editor-editor-exit-fullscreen, .editor-editor-fullscreen, .editor-editor-heading, .editor-editor-hr, .editor-editor-image, .editor-editor-italic, .editor-editor-link, .editor-editor-more, .editor-editor-olist, .editor-editor-quote, .editor-editor-redo, .editor-editor-ulist, .editor-editor-undo, .wmd-button-row li#wmd-bold-button span, .wmd-button-row li#wmd-italic-button span, .wmd-button-row li#wmd-link-button span, .wmd-button-row li#wmd-quote-button span, .wmd-button-row li#wmd-code-button span, .wmd-button-row li#wmd-image-button span, .wmd-button-row li#wmd-olist-button span, .wmd-button-row li#wmd-ulist-button span, .wmd-button-row li#wmd-heading-button span, .wmd-button-row li#wmd-hr-button span, .wmd-button-row li#wmd-more-button span, .wmd-button-row li#wmd-undo-button span, .wmd-button-row li#wmd-redo-button span, .wmd-button-row li#wmd-fullscreen-button span, .wmd-button-row li#wmd-exit-fullscreen-button span { background-image: url("../img/editor@2x.png?_=f3643ed"); background-repeat: no-repeat; background-size: 20px 300px; }
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { .editor-sprite, .editor-editor-bold, .editor-editor-code, .editor-editor-exit-fullscreen, .editor-editor-fullscreen, .editor-editor-heading, .editor-editor-hr, .editor-editor-image, .editor-editor-italic, .editor-editor-link, .editor-editor-more, .editor-editor-olist, .editor-editor-quote, .editor-editor-redo, .editor-editor-ulist, .editor-editor-undo, .wmd-button-row li#wmd-bold-button span, .wmd-button-row li#wmd-italic-button span, .wmd-button-row li#wmd-link-button span, .wmd-button-row li#wmd-quote-button span, .wmd-button-row li#wmd-code-button span, .wmd-button-row li#wmd-image-button span, .wmd-button-row li#wmd-olist-button span, .wmd-button-row li#wmd-ulist-button span, .wmd-button-row li#wmd-heading-button span, .wmd-button-row li#wmd-hr-button span, .wmd-button-row li#wmd-more-button span, .wmd-button-row li#wmd-undo-button span, .wmd-button-row li#wmd-redo-button span, .wmd-button-row li#wmd-fullscreen-button span, .wmd-button-row li#wmd-exit-fullscreen-button span, .wmd-button-row li#wmd-upload-button span, .wmd-button-row li#wmd-box-button span { background-image: url("../img/editor@2x.png?_=f3643ed"); background-repeat: no-repeat; background-size: 20px 340px; }
   .editor-editor-bold { background-position: 0 0; }
   .editor-editor-code { background-position: 0 -20px; }
   .editor-editor-exit-fullscreen { background-position: 0 -40px; }
@@ -718,7 +718,9 @@ a.operate-reply { color: #545c30; }
   .wmd-button-row li#wmd-undo-button span { background-position: 0 -280px; }
   .wmd-button-row li#wmd-redo-button span { background-position: 0 -240px; }
   .wmd-button-row li#wmd-fullscreen-button span { background-position: 0 -60px; }
-  .wmd-button-row li#wmd-exit-fullscreen-button span { background-position: 0 -40px; } }
+  .wmd-button-row li#wmd-exit-fullscreen-button span { background-position: 0 -40px; }
+  .wmd-button-row li#wmd-upload-button span { background-position: 0 -320px; }
+  .wmd-button-row li#wmd-box-button span { background-position: 0 -300px; } }
 
 .wmd-button-row { list-style: none; margin: 0; padding: 0; height: 26px; line-height: 1; }
 
@@ -759,6 +761,10 @@ a.operate-reply { color: #545c30; }
 .wmd-button-row li#wmd-fullscreen-button span { background-position: 0 -60px; }
 
 .wmd-button-row li#wmd-exit-fullscreen-button span { background-position: 0 -40px; }
+
+.wmd-button-row li#wmd-upload-button span { background-position: 0 -320px; }
+
+.wmd-button-row li#wmd-box-button span { background-position: 0 -300px; }
 
 #btn-cancel-preview { display: none; }
 
@@ -841,7 +847,7 @@ a.operate-reply { color: #545c30; }
 
 .fullscreen .wmd-hidetab { display: block; }
 
-.fullscreen .wmd-visualhide, .fullscreen #btn-fullscreen-upload { visibility: visible; }
+.fullscreen .wmd-visualhide { visibility: visible; }
 
 .preview .submit { width: 100%; background: #FFFFDD; }
 
@@ -853,7 +859,7 @@ a.operate-reply { color: #545c30; }
 
 .preview #btn-cancel-preview { display: inline-block; }
 
-@media (max-width: 575px) { #wmd-spacer2, #wmd-olist-button, #wmd-ulist-button, #wmd-heading-button, #wmd-hr-button, #wmd-more-button, #wmd-spacer3, #wmd-undo-button, #wmd-redo-button, #wmd-spacer4, #wmd-fullscreen-button, #wmd-exit-fullscreen-button, #btn-fullscreen-upload { display: none; } }
+@media (max-width: 575px) { #wmd-bold-button, #wmd-italic-button, #wmd-spacer1, #wmd-quote-button, #wmd-code-button, #wmd-spacer2, #wmd-olist-button, #wmd-ulist-button, #wmd-heading-button, #wmd-hr-button, #wmd-more-button, #wmd-spacer4, #wmd-fullscreen-button, #wmd-exit-fullscreen-button, #btn-fullscreen-upload { display: none; } }
 
 /** Jquery Timepicker */
 #ui-datepicker-div { display: none; margin-top: -1px; padding: 10px; border: 1px solid #D9D9D6; background: #FFF; }
