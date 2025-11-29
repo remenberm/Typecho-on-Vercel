@@ -1,8 +1,11 @@
-# Typecho-on-Vercel
+> 简介：该项目能够实现在Vercel平台上一键部署Typecho，自动化程度较高，部署非常丝滑~
 
-该项目能够实现在Vercel平台上一键部署Typecho，自动化程度较高，部署非常丝滑~
+## 💡项目特色
+- 0成本，完全依托于免费资源
+- 一键部署，操作便捷
+- 可视化操作图床，弥补了传统Typecho的缺陷
 
-## 部署步骤
+## ⌛部署步骤
 
 ### 1.拉取源码
 
@@ -12,7 +15,8 @@
 
 **方法二：直接fork本项目**
 
-> 建议拉取源码后及时将仓库设为私有，以防敏感信息泄露
+> [!IMPORTANT]
+> 拉取源码后及时将仓库设为私有，以防敏感信息泄露
 
 
 ### 2.创建数据库
@@ -34,20 +38,27 @@
 至此，安装完毕！
 
 
-## 更换主题
+## 🍬更换主题
 创建一个Codespaces环境，然后将下载好的主题拖入`/usr/themes`文件夹中，提交并push，文件夹名称需和主题名称一致（即不能包含`v1.6`、`-main`等后缀），否则将无法正常使用。
 
 <img width="407" height="390" alt="image" src="https://github.com/user-attachments/assets/21f775b6-b090-4591-930e-aca5532848a5" />
 
 
-## 图片上传
+## 🖼图片上传
+本项目已经将GitHub作为图床，只需要在`config.inc.php`中修改相关配置即可(❗注意一定要将本仓库设置为私有)：
+
+1. 首先创建一个干净的仓库，用于存储图片
+2. 为此仓库[申请一个](https://github.com/settings/personal-access-tokens)Token
+<img width="700" alt="image" src="https://github.com/user-attachments/assets/ee94abcf-6ba4-4ddf-9c14-f3eb4016ec13" />
+
+3. 完善`GITHUB_ATTACHMENT_TOKEN`、`GITHUB_ATTACHMENT_OWNER`、`GITHUB_ATTACHMENT_REPO`，其余均可默认
 
 
-## 开启调试功能（选）
+## 🛠开启调试功能（选）
 
 因为PHP对Vercel没有写入权限，无法查看到错误日志，所以代码调试很不方便
 
-📌**解决方案：临时开启Typeho调试模式**
+**解决方案：临时开启Typeho调试模式**
 
 在`config.inc.php`中添加如下代码：
 
@@ -57,6 +68,7 @@ define('__TYPECHO_DEBUG__', true);
 ```
 
 记得及时关闭！
+
 
 > 本项目代码均基于Typecho官方在GitHub的开源代码修改，本次采用版本号为[typecho 1.2.1](https://github.com/typecho/typecho/releases/tag/v1.2.1)
 > 该项目参考来源于：https://fordes.dev/posts/tutorials/typecho-vercel/
