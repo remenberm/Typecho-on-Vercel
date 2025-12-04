@@ -45,14 +45,20 @@
 
 
 ## 🖼图片上传
-本项目已经将GitHub作为图床，只需要在`config.inc.php`中修改相关配置即可(❗注意一定要将本仓库设置为私有)：
+本项目已经将GitHub作为图床，只需要在`config.inc.php`中修改相关配置即可：
 
 1. 首先创建一个干净的仓库，用于存储图片
 2. 为此仓库[申请一个](https://github.com/settings/personal-access-tokens)Token
 <img width="700" alt="image" src="https://github.com/user-attachments/assets/ee94abcf-6ba4-4ddf-9c14-f3eb4016ec13" />
 
-3. 完善`GITHUB_ATTACHMENT_TOKEN`、`GITHUB_ATTACHMENT_OWNER`、`GITHUB_ATTACHMENT_REPO`，其余均可默认
+3. 完善`config.inc.php`中的`GITHUB_ATTACHMENT_TOKEN`，**或者**（推荐）直接到Vercel中添加环境变量`GHTOKEN`
 
+4. 完善`config.inc.php`中的`GITHUB_ATTACHMENT_OWNER`、`GITHUB_ATTACHMENT_REPO`，其余均可默认
+
+> [!IMPORTANT]
+> 建议将图床所在的仓库也设置为私密仓库，以防git泄露（如果误传隐私照片，即便删除后也会在git提交中留下历史记录）
+
+> 另外强烈建议将图片仓库也部署到Vercel，并配备自定义域名，一是可以加快访问速度，二是仓库设置为私密后，无法直接通过 https://raw.githubusercontent.com/username/reponame 访问图片
 
 ## 🛠开启调试功能（选）
 

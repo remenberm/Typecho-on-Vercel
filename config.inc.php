@@ -51,7 +51,7 @@ Typecho_Db::set($db);
 
 if (!defined('GITHUB_ATTACHMENT_TOKEN')) {
   // Fine‑grained token，确保已授权仓库并给 "Contents: Read & write"
-  define('GITHUB_ATTACHMENT_TOKEN', 'xxx');
+  define('GITHUB_ATTACHMENT_TOKEN', getenv('GHTOKEN') ?: 'xxx');
 
   // 仓库 owner
   define('GITHUB_ATTACHMENT_OWNER', 'xxx');
