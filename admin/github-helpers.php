@@ -52,8 +52,6 @@ if (!function_exists('gh_ok')) {
 // 路径规范化（root/path）
 if (!function_exists('gh_path_normalize')) {
     function gh_path_normalize($path) {
-        if (empty($path)) return '';
-
         $path = trim($path, '/');
         $parts = explode('/', $path);
         $encodedParts = [];
@@ -73,7 +71,7 @@ if (!function_exists('gh_path_normalize')) {
         }
 
         $fullEncodedParts = array_merge($basePartsEncoded ?? [], $encodedParts);
-        $fullPath = implode('/', $fullEncodedParts);
+        $fullPath = trim(implode('/', $fullEncodedParts), '/');
         $fullPath = preg_replace('#/\.\./#', '/', $fullPath);
         return $fullPath;
     }

@@ -102,6 +102,7 @@ if ($action === 'upload') {
     if(isset($_POST['isFromEditor']) && trim($_POST['isFromEditor']) === '1') {
         $path = $cfg['editor_upload_dir'];
     } else {
+    // 否则上传至当前选定文件夹
         $path = isset($_POST['path']) ? trim((string)$_POST['path'], '/') : '';
     }
 
