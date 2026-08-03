@@ -27,4 +27,4 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          python scripts/sync_typecho.py --create-pr
+          python scripts/sync_typecho.py --create-pr --create-release

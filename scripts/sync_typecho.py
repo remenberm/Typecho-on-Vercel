@@ -35,7 +35,7 @@ def fetch_latest_release(repo):
     )
     with urllib.request.urlopen(req, timeout=60) as resp:
         data = json.load(resp)
-    return data["tag_name"], data.get("html_url", "")
+    return data.get("tag_name", ""), data.get("html_url", ""), data.get("name", ""), data.get("body", "")
 
 
 def download_release(repo, tag, dest):
@@ -76,11 +76,26 @@ def sanitize_ref(value):
     return "".join(ch if ch.isalnum() or ch in {"-", "_"} else "-" for ch in value)
 
 
+def create_or_update_release(repo_root, tag, release_name, release_body):
+    notes = f"Automated sync from upstream Typecho release {tag}.\n\n"
+    if release_body and release_body.strip():
+        notes += release_body.strip()
+    else:
+        notes += "No release notes were provided by upstream."
+
+    view = run(["gh", "release", "view", tag], cwd=repo_root, capture_output=True, check=False)
+    if view.returncode == 0:
+        run(["gh", "release", "edit", tag, "--title", release_name or f"Typecho {tag}", "--notes", notes], cwd=repo_root)
+    else:
+        run(["gh", "release", "create", tag, "--title", release_name or f"Typecho {tag}", "--notes", notes], cwd=repo_root)
+
+
 def main():
     parser = argparse.ArgumentParser(description="Sync the latest Typecho release into the repository")
     parser.add_argument("--repo", default=DEFAULT_REPO, help="Upstream GitHub repository (default: %(default)s)")
     parser.add_argument("--branch-prefix", default="bot/sync-typecho", help="Branch prefix for generated sync branches")
     parser.add_argument("--create-pr", action="store_true", help="Create a pull request when changes are detected")
+    parser.add_argument("--create-release", action="store_true", help="Create or update a GitHub Release when changes are detected")
     parser.add_argument("--dry-run", action="store_true", help="Print the planned actions without changing the repository")
     args = parser.parse_args()
 
@@ -89,7 +104,7 @@ def main():
 
     print(f"Fetching latest release from {args.repo}...")
     try:
-        tag, release_url = fetch_latest_release(args.repo)
+        tag, release_url, release_name, release_body = fetch_latest_release(args.repo)
     except (HTTPError, URLError) as exc:
         print(f"Failed to fetch release metadata: {exc}", file=sys.stderr)
         sys.exit(1)
@@ -131,23 +146,26 @@ def main():
                     pr_data = json.loads(pr_exists.stdout)
                     if pr_data:
                         print(f"Pull request already exists for {branch_name}: #{pr_data[0]['number']}")
-                        return
-                run(
-                    [
-                        "gh",
-                        "pr",
-                        "create",
-                        "--title",
-                        f"chore: sync Typecho {tag}",
-                        "--body",
-                        f"Automated sync from upstream Typecho release {tag}.\n\n- Source: {release_url}",
-                        "--base",
-                        "main",
-                        "--head",
-                        branch_name,
-                    ],
-                    cwd=repo_root,
-                )
+                    else:
+                        run(
+                            [
+                                "gh",
+                                "pr",
+                                "create",
+                                "--title",
+                                f"chore: sync Typecho {tag}",
+                                "--body",
+                                f"Automated sync from upstream Typecho release {tag}.\n\n- Source: {release_url}",
+                                "--base",
+                                "main",
+                                "--head",
+                                branch_name,
+                            ],
+                            cwd=repo_root,
+                        )
+
+            if args.create_release:
+                create_or_update_release(repo_root, tag, release_name or f"Typecho {tag}", release_body)
         else:
             print("Dry-run enabled; no files were modified.")
 
