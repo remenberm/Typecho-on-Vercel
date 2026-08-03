@@ -1,67 +1,40 @@
 > 简介：该项目能够实现在Vercel平台上一键部署Typecho，自动化程度较高，部署非常丝滑~
 
+## 💡项目简介
+Typecho on Vercel 是一个让你能够在 Vercel 平台上零成本部署 Typecho 博客系统的项目。基于 Typecho 官方开源代码修改适配，完美兼容 Vercel 的无服务器环境。
+
 ## 💡项目特色
-- 0成本，完全依托于免费资源
-- 一键部署，操作便捷
-- 保留 Typecho 官方基础能力，并适配 Vercel 部署
+- 💰 0 成本：完全依托于 Vercel 的免费资源
+- 🚀 一键部署：操作便捷，快速上线-
+- ⚡ 保留官方能力：保留 Typecho 官方基础功能，并适配 Vercel 部署环境-
+- 🔄 自动同步：通过 GitHub Actions 定时拉取更新
 
 ## ⌛部署步骤
 
 ### 1.拉取源码
 
 **方法一：Vercel一键部署（推荐）**
-
 <a href="https://vercel.com/new/clone?repository-url=https://github.com/vastroc/Typecho-on-Vercel" target="_blank" rel="noreferrer"><img src="https://vercel.com/button" alt="部署到 Vercel"></a>
 
 **方法二：直接fork本项目**
-
 > [!IMPORTANT]
-> 拉取源码后及时将仓库设为私有，以防敏感信息泄露
+> 在 Vercel 中导入该仓库
+> 拉取源码后请及时将仓库设为私有，以防敏感信息泄露
 
 
 ### 2.创建数据库
-
 在创建好的vercel项目中，选择`Storage - Create Database - Neon`，然后一直下一步，全部默认
+💡 Neon 是 Vercel 官方推荐的 PostgreSQL 数据库服务，提供免费额度，非常适合本项目。
 
 ### 3.再次部署Vercel
-
+进入 Vercel 项目面板的 Deployments → Create Deployment，重新部署一次以使数据库配置生效
 进入`Deployments - Create Deployment`
 
-<img width="1870" height="272" alt="image" src="https://github.com/user-attachments/assets/12c30b61-237f-4485-9afa-73fccdc62dbd" />
-
-
 ### 4.开始安装
-进入`域名/install.php`，一路下一步，非常丝滑~
-
-最后为网站设置后台用户名和密码即可
-
-至此，安装完毕！
-
-
-## 🍬更换主题
-创建一个Codespaces环境，然后将下载好的主题拖入`/usr/themes`文件夹中，提交并push，文件夹名称需和主题名称一致（即不能包含`v1.6`、`-main`等后缀），否则将无法正常使用。
-
-<img width="407" height="390" alt="image" src="https://github.com/user-attachments/assets/21f775b6-b090-4591-930e-aca5532848a5" />
-
+访问 你的域名/install.php，按照安装向导一路下一步即可-1。最后为网站设置后台用户名和密码，安装完成！🎉
 
 ## 🖼图片上传
 本项目使用https://github.com/lhl77/Typecho-Plugin-PicUp，请自行探索
 
-## 🛠开启调试功能（选）
-
-因为PHP对Vercel没有写入权限，无法查看到错误日志，所以代码调试很不方便
-
-**解决方案：临时开启Typeho调试模式**
-
-在`config.inc.php`中取消对如下代码的注释：
-
-```
-/** 开启数据库错误日志 */
-define('__TYPECHO_DEBUG__', true);
-```
-
-记得及时关闭！
-
-
-> 本项目代码均基于Typecho官方在GitHub的开源代码修改，本次采用版本号为[typecho 1.2.1](https://github.com/typecho/typecho/releases/tag/v1.2.1)
-> 该项目参考来源于：https://fordes.dev/posts/tutorials/typecho-vercel/
+## 注意
+Vercel 的生产环境是基于无服务器 (Serverless) 架构的，其文件系统本质上是只读的（Read-Only File System）。使用过程中可能出现文件权限问题，请自行探索。
