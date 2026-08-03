@@ -45,9 +45,7 @@
 
 
 ## 🖼图片上传
-本项目已移除 GitHub 图床相关功能，默认不再依赖 GitHub 作为图片存储服务。
-
-如需上传与管理图片，请继续使用 Typecho 自带的附件能力或自行接入其他存储方案。
+本项目使用https://github.com/lhl77/Typecho-Plugin-PicUp，请自行探索
 
 ## 🛠开启调试功能（选）
 
