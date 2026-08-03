@@ -135,7 +135,7 @@ if (!$user->pass('editor', true) && !$user->pass('administrator', true)) gh_erro
 
 <script src="js/media-common.js"></script>
 <script>
-const apiUrl = '<?php echo $options->adminUrl('github-api.php'); ?>';
+const apiUrl = null;
 var pageState = {
     currentPage: 1,
     pageSize: 20,

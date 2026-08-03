@@ -3,9 +3,7 @@ include_once 'common.php';
 if (!$user->pass('editor', true) && !$user->pass('administrator', true)) gh_error('权限不足');
 
 include 'github-helpers.php';
-if (!gh_is_configured()) gh_error('GitHub 未配置，请到 config.inc.php 中进行配置');
-$cfg = gh_cfg_raw();
-$action = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
+gh_error('当前版本已移除 GitHub 图床接口。');
 
 if ($action === 'list_all') {
     $branch = $cfg['branch'] ?: 'main';

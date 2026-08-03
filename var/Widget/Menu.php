@@ -109,7 +109,6 @@ class Menu extends Base
                 [[CategoryEdit::class, 'getMenuTitle'], [CategoryEdit::class, 'getMenuTitle'], 'category.php?parent=', 'editor', true],
                 [_t('标签'), _t('管理标签'), 'manage-tags.php', 'editor'],
                 [[TagAdmin::class, 'getMenuTitle'], [TagAdmin::class, 'getMenuTitle'], 'manage-tags.php?mid=', 'editor', true],
-                [_t('图床'), _t('管理图床'), 'manage-medias.php', 'editor'],
                 [[AttachmentEdit::class, 'getMenuTitle'], [AttachmentEdit::class, 'getMenuTitle'], 'media.php?cid=', 'contributor', true],
                 [_t('用户'), _t('管理用户'), 'manage-users.php', 'administrator', false, 'user.php'],
                 [_t('新增用户'), _t('新增用户'), 'user.php', 'administrator', true],

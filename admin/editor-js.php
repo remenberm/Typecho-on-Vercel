@@ -185,21 +185,14 @@ $(document).ready(function () {
         var uploadButton = $('#wmd-upload-button');
         uploadButton.click(function(e) {
             e.preventDefault();
-            var $fileInput = $('<input type="file" accept="image/*" />');
-            $fileInput.on('change', function() {
-                uploadFile(this.files[0], function(res) {
-                    // 完成后的回调：插入编辑器
-                    Typecho.insertFileToEditor(decodeURIComponent(res.url));
-                });
-            });
-            $fileInput.trigger('click');
+            alert('<?php _e('当前版本已移除 GitHub 图床上传入口。'); ?>');
         });
 
         // 打开媒体库按钮
         var boxButton = $('#wmd-box-button');
         boxButton.click(function(e) {
             e.preventDefault();
-            openModal();
+            alert('<?php _e('当前版本已移除 GitHub 图床素材库入口。'); ?>');
         });
 
         Typecho.uploadComplete = function (file) {
