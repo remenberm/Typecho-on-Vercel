@@ -14,6 +14,7 @@ Typecho on Vercel 是一个让你能够在 Vercel 平台上零成本部署 Typec
 ### 1.拉取源码
 
 **方法一：Vercel一键部署（推荐）**
+
 <a href="https://vercel.com/new/clone?repository-url=https://github.com/vastroc/Typecho-on-Vercel" target="_blank" rel="noreferrer"><img src="https://vercel.com/button" alt="部署到 Vercel"></a>
 
 **方法二：直接fork本项目**
