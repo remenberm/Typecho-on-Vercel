@@ -1,0 +1,40 @@
+{
+  "local-default": {
+    "driver": "local",
+    "uploadDir": "usr/uploads",
+    "urlPrefix": "",
+    "_extensions": {
+      "compress": { "enabled": false, "quality": "82" },
+      "webp": { "enabled": false, "quality": "85" },
+      "watermark": { "enabled": false }
+    }
+  },
+  "github-cdn": {
+    "driver": "github",
+    "token": "",
+    "repo": "owner/repo",
+    "branch": "main",
+    "prefix": "images",
+    "cdn": "https://cdn.jsdelivr.net/gh/owner/repo",
+    "_extensions": {
+      "compress": { "enabled": false, "quality": "82" },
+      "webp": { "enabled": false, "quality": "85" },
+      "watermark": { "enabled": false }
+    }
+  },
+  "s3-compatible": {
+    "driver": "s3",
+    "endpoint": "https://s3.example.com",
+    "region": "us-east-1",
+    "bucket": "my-bucket",
+    "accessKey": "",
+    "secretKey": "",
+    "prefix": "images",
+    "urlPrefix": "https://cdn.example.com",
+    "_extensions": {
+      "compress": { "enabled": false, "quality": "82" },
+      "webp": { "enabled": false, "quality": "85" },
+      "watermark": { "enabled": false }
+    }
+  }
+}
