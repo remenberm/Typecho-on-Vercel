@@ -36,7 +36,8 @@ Typecho on Vercel 是一个让你能够在 Vercel 平台上零成本部署 Typec
 
 ## 🖼图片上传
 本项目使用https://github.com/lhl77/Typecho-Plugin-PicUp
-使用教程请参考此项目简介<a href="https://blog.lhl.one/artical/1026.html">中文文档</a> ·
+
+使用教程请参考此项目简介<a href="https://blog.lhl.one/artical/1026.html">PicUp中文文档</a> ·
 
 ## 注意
 Vercel 的生产环境是基于无服务器 (Serverless) 架构的，其文件系统本质上是只读的（Read-Only File System）。使用过程中可能出现文件权限问题，请自行探索。
