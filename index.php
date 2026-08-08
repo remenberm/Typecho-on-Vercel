@@ -26,11 +26,6 @@ function typecho_has_installed_config(): bool
         return false;
     }
 
-    $hasRequiredDbEnv = getenv('PGHOST') && getenv('PGUSER') && getenv('PGPASSWORD') && getenv('PGDATABASE');
-    if (!$hasRequiredDbEnv) {
-        return false;
-    }
-
     try {
         require_once $configFile;
 
@@ -49,9 +44,21 @@ function typecho_has_installed_config(): bool
     }
 }
 
+function typecho_should_redirect_to_install(): bool
+{
+    $path = '/' . ltrim(parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?: '/', '/');
+
+    return $path === '/' || $path === '/index.php' || $path === '/admin' || $path === '/admin/';
+}
+
 /** 载入配置支持 */
 if (!defined('__TYPECHO_ROOT_DIR__')) {
     if (!typecho_has_installed_config()) {
+        if (typecho_should_redirect_to_install() && file_exists('./install.php')) {
+            header('Location: /install.php');
+            exit;
+        }
+
         file_exists('./install.php') ? header('Location: install.php') : print('Missing Config File');
         exit;
     }
