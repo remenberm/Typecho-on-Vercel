@@ -6,9 +6,29 @@ if (!defined('__DIR__')) {
 define('__TYPECHO_ADMIN__', true);
 
 /** 载入配置文件 */
-if (!defined('__TYPECHO_ROOT_DIR__') && !@include_once __DIR__ . '/../config.inc.php') {
-    file_exists(__DIR__ . '/../install.php') ? header('Location: ../install.php') : print('Missing Config File');
-    exit;
+if (!defined('__TYPECHO_ROOT_DIR__')) {
+    $configFile = __DIR__ . '/../config.inc.php';
+
+    if (file_exists($configFile)) {
+        try {
+            require_once $configFile;
+
+            $db = \Typecho\Db::get();
+            $installed = $db->fetchRow(
+                $db->select()->from('table.options')->where('user = 0 AND name = ?', 'installed')
+            );
+
+            if (empty($installed['value'])) {
+                throw new \Exception('not installed');
+            }
+        } catch (\Throwable $e) {
+            file_exists(__DIR__ . '/../install.php') ? header('Location: ../install.php') : print('Missing Config File');
+            exit;
+        }
+    } else {
+        file_exists(__DIR__ . '/../install.php') ? header('Location: ../install.php') : print('Missing Config File');
+        exit;
+    }
 }
 
 /** 初始化组件 */

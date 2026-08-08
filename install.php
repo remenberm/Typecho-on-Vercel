@@ -1,26 +1,54 @@
 <?php
 
-if (!file_exists(dirname(__FILE__) . '/config.inc.php')) {
-    // site root path
+if (!defined('__TYPECHO_ROOT_DIR__')) {
     define('__TYPECHO_ROOT_DIR__', dirname(__FILE__));
-
-    // plugin directory (relative path)
     define('__TYPECHO_PLUGIN_DIR__', '/usr/plugins');
-
-    // theme directory (relative path)
     define('__TYPECHO_THEME_DIR__', '/usr/themes');
-
-    // admin directory (relative path)
     define('__TYPECHO_ADMIN_DIR__', '/admin/');
 
-    // register autoload
     require_once __TYPECHO_ROOT_DIR__ . '/var/Typecho/Common.php';
-
-    // init
     \Typecho\Common::init();
+}
+
+function install_load_existing_config(): bool
+{
+    $configFile = dirname(__FILE__) . '/config.inc.php';
+
+    if (!file_exists($configFile)) {
+        return false;
+    }
+
+    $hasRequiredDbEnv = getenv('PGHOST') && getenv('PGUSER') && getenv('PGPASSWORD') && getenv('PGDATABASE');
+    if (!$hasRequiredDbEnv) {
+        return false;
+    }
+
+    try {
+        require_once $configFile;
+
+        $db = \Typecho\Db::get();
+        if (empty($db)) {
+            return false;
+        }
+
+        $installed = $db->fetchRow(
+            $db->select()->from('table.options')->where('user = 0 AND name = ?', 'installed')
+        );
+
+        return !empty($installed['value']);
+    } catch (\Throwable $e) {
+        return false;
+    }
+}
+
+if (!file_exists(dirname(__FILE__) . '/config.inc.php')) {
+    $installDb = null;
 } else {
-    require_once dirname(__FILE__) . '/config.inc.php';
-    $installDb = \Typecho\Db::get();
+    $installDb = null;
+
+    if (install_load_existing_config()) {
+        $installDb = \Typecho\Db::get();
+    }
 }
 
 /**
